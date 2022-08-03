@@ -3,8 +3,6 @@ package com.mohammadhashem.usecase.usecases
 import com.mohammadhashem.usecase.di.IoDispatcher
 import com.mohammadhashem.usecase.mapper.toCryptos
 import com.mohammadhashem.usecase.model.CryptoModel
-import kotlinx.serialization.*
-import kotlinx.serialization.json.JSON
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -57,28 +55,33 @@ class GetRemoteFullDataUseCase @Inject constructor(
     private suspend fun getLogo(cryptoModel: CryptoModel): String {
         try {
             val body = getLogoUseCase.invoke(cryptoModel.id)
-            if (body.status.error_code==0) {
+            var mainJSONObj:JSONObject = JSONObject(body.data.toString())
+// get category JSONObject from mainJSONObj
+            var categoryJSONObj:JSONObject =mainJSONObj.getJSONObject(cryptoModel.id);
 
-                // serializing objects
-                val jsonData = JSON.stringify(MyModel.serializer(), MyModel(42))
-                println(jsonData) // {"a": 42, "b": "42"}
+// get all keys from categoryJSONObj
 
-                // serializing lists
-                val jsonList = JSON.stringify(MyModel.serializer().list, listOf(MyModel(42)))
-                println(jsonList) // [{"a": 42, "b": "42"}]
-
-
-                val data = JSONObject(body.data.toString()).getInt(cryptoModel.id)
-                val ID = JSONObject(data.toString()).getString(cryptoModel.id)
-                return JSONObject(ID).getString("logo")
-            }else{
-                return "https://media4.s-nbcnews.com/j/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.nbcnews-fp-1024-512.png"
+            var iterator:Iterator<String>  = categoryJSONObj.keys();
+            while (iterator.hasNext()) {
+                val key:String  = iterator.next();
+                println("OUR VALUE:$key    ${categoryJSONObj.optString(key)}")
             }
+
+
+
+
+
+
+//            val data = JSONObject(body.data.toString()).getString(cryptoModel.id)
+//            val ID = JSONObject(data.toString()).getString(cryptoModel.id)
+//            return JSONObject(ID).getString("logo")
         }catch (e:Exception){
             e.message
         }
         return "https://media4.s-nbcnews.com/j/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.nbcnews-fp-1024-512.png"
     }
+
+    fun test(){}
 
 
 }

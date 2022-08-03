@@ -5,7 +5,6 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
-    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
 }
 
 android {
@@ -94,6 +93,6 @@ dependencies {
 
 
     implementation Libs.liveData.ktx
-//    kotlin("jvm") version "1.7.10"
-//    kotlin("plugin.serialization") version "1.7.10"
+//    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+"
+//    implementation "com.fasterxml.jackson.core:jackson-annotations:2.13.3"
 }
