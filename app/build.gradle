@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id "org.jlleitschuh.gradle.ktlint"
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk Libs.defaultBuildVersion.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.navaco.nap"
+        minSdk Libs.defaultBuildVersion.minSdkVersion
+        targetSdk Libs.defaultBuildVersion.targetSdkVersion
+        versionCode Libs.defaultBuildVersion.versionCode
+        versionName Libs.defaultBuildVersion.versionName
+
+        testInstrumentationRunner Libs.defaultBuildVersion.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = Libs.defaultBuildVersion.jvmTarget
+    }
+    buildFeatures {
+        viewBinding Libs.defaultBuildVersion.viewBinding
+    }
+//    namespace 'com.navaco.nap'
+}
+
+dependencies {
+
+
+    implementation Libs.AndroidxDefaultLibs.core
+    implementation Libs.AndroidxDefaultLibs.appcompat
+    implementation Libs.AndroidxDefaultLibs.constraintlayout
+
+    //material
+    implementation Libs.Google.material
+
+
+    //test
+    testImplementation Libs.Test.junit
+
+    //android test
+    androidTestImplementation Libs.AndroidTest.junit
+    androidTestImplementation Libs.AndroidTest.espresso
+
+    //navigation component
+    implementation Libs.NavigationComponents.navigation_fragment
+    implementation Libs.NavigationComponents.navigation_ui
+    androidTestImplementation Libs.NavigationComponents.navigation_testing
+
+    //dagger hilt
+    implementation Libs.dagger.dagger
+    implementation Libs.dagger.hilt
+    kapt Libs.dagger.hilt_compiler
+
+
+    //Lottie
+    implementation Libs.lottie.lottie
+
+    // internal modules
+
+
+
+
+}
