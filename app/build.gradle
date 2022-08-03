@@ -48,6 +48,7 @@ dependencies {
 
     //material
     implementation Libs.Google.material
+    implementation project(path: ':Feature:Home')
 
 
     //test

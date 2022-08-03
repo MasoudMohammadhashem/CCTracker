@@ -1,0 +1,99 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "org.jlleitschuh.gradle.ktlint"
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
+}
+
+android {
+    compileSdk Libs.defaultBuildVersion.compileSdkVersion
+
+    defaultConfig {
+        minSdk Libs.defaultBuildVersion.minSdkVersion
+        targetSdk Libs.defaultBuildVersion.targetSdkVersion
+
+        testInstrumentationRunner Libs.defaultBuildVersion.testInstrumentationRunner
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = Libs.defaultBuildVersion.jvmTarget
+    }
+    buildFeatures {
+        viewBinding = Libs.defaultBuildVersion.viewBinding
+    }
+//    namespace 'com.navaco.home'
+}
+
+dependencies {
+
+    implementation Libs.AndroidxDefaultLibs.core
+    implementation Libs.AndroidxDefaultLibs.appcompat
+    implementation Libs.AndroidxDefaultLibs.constraintlayout
+
+    //material
+    implementation Libs.Google.material
+    implementation project(path: ':Common:Utils')
+    implementation project(path: ':Data:Cache')
+    implementation project(path: ':Data:Network')
+
+
+    //test
+    testImplementation Libs.Test.junit
+
+    //android test
+    androidTestImplementation Libs.AndroidTest.junit
+    androidTestImplementation Libs.AndroidTest.espresso
+
+    //navigation component
+    implementation Libs.NavigationComponents.navigation_fragment
+    implementation Libs.NavigationComponents.navigation_ui
+    androidTestImplementation Libs.NavigationComponents.navigation_testing
+
+    // glide
+    implementation Libs.Glide.glide
+    kapt Libs.Glide.compiler
+    // room
+    implementation Libs.room.room_runtime
+    implementation Libs.room.room_ktx
+    kapt Libs.room.room_compiler
+
+    //dagger hilt
+    implementation Libs.dagger.dagger
+    implementation Libs.dagger.hilt
+    kapt Libs.dagger.hilt_compiler
+
+    implementation Libs.dotsindicator.dotsindicator
+
+    api Libs.coroutines.core
+    api Libs.coroutines.android
+
+
+    //room
+    annotationProcessor Libs.room.room_runtime
+    implementation Libs.room.room_ktx
+    kapt Libs.room.room_compiler
+
+
+    implementation Libs.lifecycle_components.extensions
+    implementation Libs.lifecycle_components.common
+    implementation Libs.lifecycle_components.viewmodel
+
+
+    implementation Libs.liveData.ktx
+//    kotlin("jvm") version "1.7.10"
+//    kotlin("plugin.serialization") version "1.7.10"
+}

@@ -10,7 +10,15 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Common" />
+            <option value="$PROJECT_DIR$/Common/BaseUi" />
             <option value="$PROJECT_DIR$/Common/Utils" />
+            <option value="$PROJECT_DIR$/Data" />
+            <option value="$PROJECT_DIR$/Data/Cache" />
+            <option value="$PROJECT_DIR$/Data/Network" />
+            <option value="$PROJECT_DIR$/Domain" />
+            <option value="$PROJECT_DIR$/Domain/UseCase" />
+            <option value="$PROJECT_DIR$/Feature" />
+            <option value="$PROJECT_DIR$/Feature/Home" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

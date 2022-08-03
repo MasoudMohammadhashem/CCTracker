@@ -14,4 +14,13 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CC Tracker"
 include ':app'
+include ':Common'
+include ':Data'
+include ':Domain'
+include ':Feature'
 include ':Common:Utils'
+include ':Common:BaseUi'
+include ':Data:Cache'
+include ':Data:Network'
+include ':Domain:UseCase'
+include ':Feature:Home'

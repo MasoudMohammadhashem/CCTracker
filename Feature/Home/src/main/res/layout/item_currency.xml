@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/currency_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:foreground="?selectableItemBackground"
+    android:clickable="true"
+    tools:ignore="KeyboardInaccessibleWidget,UnusedAttribute">
+
+    <ImageView
+        android:id="@+id/currency_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_bitcoin" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
