@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mohammadhashem.baseui.BaseFragment
 import com.mohammadhashem.home.databinding.FragmentHomeBinding
@@ -41,12 +42,11 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.remoteStateFlow.collect(){
                     if (it.isNotEmpty()){
-                        Toast.makeText(requireContext(), "${it[0]}", Toast.LENGTH_SHORT).show()
-/*                        val adapter = SourcesAdapter()
-                        binding.rvCryptoCurrencies.layoutManager =
-                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                        binding.rvCryptoCurrencies.adapter = adapter
-                        adapter.setData(it.sources,this,imageLoader)*/
+//                        val adapter = CurrenciesAdapter()
+//                        binding.rvCryptoCurrencies.layoutManager =
+//                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+//                        binding.rvCryptoCurrencies.adapter = adapter
+//                        adapter.setData(it,this,imageLoader)
                     }
                 }
             }

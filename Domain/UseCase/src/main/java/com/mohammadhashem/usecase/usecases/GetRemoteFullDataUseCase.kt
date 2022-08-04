@@ -53,25 +53,14 @@ class GetRemoteFullDataUseCase @Inject constructor(
         }
 
     private suspend fun getLogo(cryptoModel: CryptoModel): String {
-/*        try {
-            val body = getLogoUseCase.invoke(cryptoModel.id)
-            var mainJSONObj:JSONObject = JSONObject(body.data.toString())
-// get category JSONObject from mainJSONObj
-            var categoryJSONObj:JSONObject =mainJSONObj.getJSONObject(cryptoModel.id);
-
-// get all keys from categoryJSONObj
-
-            var iterator:Iterator<String>  = categoryJSONObj.keys();
-            while (iterator.hasNext()) {
-                val key:String  = iterator.next();
-                println("OUR VALUE:$key    ${categoryJSONObj.optString(key)}")
-            }
-//            val data = JSONObject(body.data.toString()).getString(cryptoModel.id)
-//            val ID = JSONObject(data.toString()).getString(cryptoModel.id)
-//            return JSONObject(ID).getString("logo")
+        try {
+            val body = getLogoUseCase.invoke(cryptoModel.id).toString()
+            var logo = body.split("logo=")
+            logo = logo[1].split(", subreddit=")
+            return logo[0].trim()
         }catch (e:Exception){
             e.message
-        }*/
+        }
         return "https://media4.s-nbcnews.com/j/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.nbcnews-fp-1024-512.png"
     }
 
