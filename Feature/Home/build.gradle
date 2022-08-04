@@ -48,8 +48,6 @@ dependencies {
     implementation project(path: ':Domain:UseCase')
     implementation project(path: ':Common:Utils')
     implementation project(path: ':Common:BaseUi')
-    implementation project(path: ':Data:Network')
-    implementation project(path: ':Data:Cache')
 
 
     //test

@@ -1,5 +1,6 @@
 package com.mohammadhashem.usecase.usecases
 
+import com.mohammadhashem.usecase.di.DefaultDispatcher
 import com.mohammadhashem.usecase.di.IoDispatcher
 import com.mohammadhashem.usecase.mapper.toCryptos
 import com.mohammadhashem.usecase.model.CryptoModel
@@ -9,9 +10,11 @@ import javax.inject.Inject
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.lang.Exception
+import javax.inject.Singleton
 
+@Singleton
 class GetRemoteFullDataUseCase @Inject constructor(
-    @IoDispatcher private val dispatcher: CoroutineDispatcher,
+    @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
     private val remoteUseCase: GetRemoteUseCase, private val getLogoUseCase: GetLogoUseCase
 ) {
     suspend operator fun invoke(
@@ -33,17 +36,14 @@ class GetRemoteFullDataUseCase @Inject constructor(
                 volume24_min,
                 volume24_max
             )
-            if (result.status.error_code==0) {
-                return@withContext buildList {
-                    launch {
-                        var myList = result.toCryptos()
-                        myList?.forEachIndexed { index, cryptoModel ->
-                            val logo = getLogo(cryptoModel)
-                            myList[index].imageUrl = logo
-                        }
-                        return@launch
+            if (result.status.error_code==0L) {
+                buildList {
+                        val myList = result.toCryptos()
+                    myList.forEachIndexed { index, cryptoModel ->
+                        val logo = getLogo(cryptoModel)
+                        myList[index].imageUrl = logo
+                        add(index,myList[index])
                     }
-
                 }
             } else {
                 return@withContext buildList {
@@ -53,7 +53,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
         }
 
     private suspend fun getLogo(cryptoModel: CryptoModel): String {
-        try {
+/*        try {
             val body = getLogoUseCase.invoke(cryptoModel.id)
             var mainJSONObj:JSONObject = JSONObject(body.data.toString())
 // get category JSONObject from mainJSONObj
@@ -66,22 +66,13 @@ class GetRemoteFullDataUseCase @Inject constructor(
                 val key:String  = iterator.next();
                 println("OUR VALUE:$key    ${categoryJSONObj.optString(key)}")
             }
-
-
-
-
-
-
 //            val data = JSONObject(body.data.toString()).getString(cryptoModel.id)
 //            val ID = JSONObject(data.toString()).getString(cryptoModel.id)
 //            return JSONObject(ID).getString("logo")
         }catch (e:Exception){
             e.message
-        }
+        }*/
         return "https://media4.s-nbcnews.com/j/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.nbcnews-fp-1024-512.png"
     }
-
-    fun test(){}
-
 
 }

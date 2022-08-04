@@ -1,19 +1,17 @@
-package com.mohammadhashem.home
+package com.mohammadhashem.home.fragment
 
 import android.os.Bundle
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mohammadhashem.baseui.BaseFragment
 import com.mohammadhashem.home.databinding.FragmentHomeBinding
-import com.mohammadhashem.home.viewmodel.HomeViewModel
+import com.mohammadhashem.home.fragment.viewmodel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -43,11 +41,12 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.remoteStateFlow.collect(){
                     if (it.isNotEmpty()){
-//                        val adapter = SourcesAdapter()
-//                        binding.rvCryptoCurrencies.layoutManager =
-//                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-//                        binding.rvCryptoCurrencies.adapter = adapter
-//                        adapter.setData(it.sources,this,imageLoader)
+                        Toast.makeText(requireContext(), "${it[0]}", Toast.LENGTH_SHORT).show()
+/*                        val adapter = SourcesAdapter()
+                        binding.rvCryptoCurrencies.layoutManager =
+                            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                        binding.rvCryptoCurrencies.adapter = adapter
+                        adapter.setData(it.sources,this,imageLoader)*/
                     }
                 }
             }
