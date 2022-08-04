@@ -11,7 +11,7 @@ android {
     compileSdk Libs.defaultBuildVersion.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.navaco.nap"
+        applicationId "com.mohammadhashem.cctracker"
         minSdk Libs.defaultBuildVersion.minSdkVersion
         targetSdk Libs.defaultBuildVersion.targetSdkVersion
         versionCode Libs.defaultBuildVersion.versionCode

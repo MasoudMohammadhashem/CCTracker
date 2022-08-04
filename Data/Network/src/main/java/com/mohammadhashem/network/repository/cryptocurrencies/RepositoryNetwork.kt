@@ -5,8 +5,9 @@ import com.mohammadhashem.utils.ResultData
 
 interface RepositoryNetwork {
     suspend fun getAllCryptoCurrencies(
-        limit:Int,sort:String,sort_type:String,
+        start:Int,limit:Int,sort:String,sort_type:String,
+        volume24_min:Double,volume24_max: Double,
                                percent_change24_min:Double,
                                percent_change24_max:Double,
-                               volume24_min:Double,volume24_max: Double): CryptoResponse
+                               ): CryptoResponse
 }

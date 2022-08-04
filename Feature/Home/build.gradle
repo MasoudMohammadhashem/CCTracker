@@ -94,5 +94,6 @@ dependencies {
 
     implementation Libs.liveData.ktx
 
-
+//pagination
+    implementation Libs.paging.paging
 }

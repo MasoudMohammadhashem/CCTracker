@@ -5,6 +5,7 @@ import com.mohammadhashem.utils.ResultData
 
 interface DataSourceRemote {
     suspend fun getCryptoCurrencies(
+        start:Int,
         limit: Int,
         sort: String, sort_type: String,
         percent_change24_min: Double,

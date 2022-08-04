@@ -2,4 +2,8 @@
 <resources>
     <dimen name="common_margin_double">32dp</dimen>
     <dimen name="space_16">16dp</dimen>
+    <dimen name="dim_24">24dp</dimen>
+    <dimen name="dim_16">16dp</dimen>
+    <dimen name="dim_20">20dp</dimen>
+    <dimen name="dim_32">32dp</dimen>
 </resources>

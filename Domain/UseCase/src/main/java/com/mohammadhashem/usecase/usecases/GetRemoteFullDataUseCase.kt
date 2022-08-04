@@ -15,26 +15,30 @@ import javax.inject.Singleton
 @Singleton
 class GetRemoteFullDataUseCase @Inject constructor(
     @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
-    private val remoteUseCase: GetRemoteUseCase, private val getLogoUseCase: GetLogoUseCase
+    private val allUseCases: AllUseCases
 ) {
     suspend operator fun invoke(
+        start:Int,
         limit: Int,
         sort: String,
         sort_type: String,
+        volume24_min: Double,
+        volume24_max: Double,
         percent_change24_min: Double,
         percent_change24_max: Double,
-        volume24_min: Double,
-        volume24_max: Double
+
     ): List<CryptoModel> =
         withContext(dispatcher) {
-            val result = remoteUseCase.invoke(
+            val result = allUseCases.getRemoteUseCase.invoke(
+                start,
                 limit,
                 sort,
                 sort_type,
+                volume24_min,
+                volume24_max,
                 percent_change24_min,
                 percent_change24_max,
-                volume24_min,
-                volume24_max
+
             )
             if (result.status.error_code==0L) {
                 buildList {
@@ -54,7 +58,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
 
     private suspend fun getLogo(cryptoModel: CryptoModel): String {
         try {
-            val body = getLogoUseCase.invoke(cryptoModel.id).toString()
+            val body = allUseCases.getLogoUseCase.invoke(cryptoModel.id).toString()
             var logo = body.split("logo=")
             logo = logo[1].split(", subreddit=")
             return logo[0].trim()

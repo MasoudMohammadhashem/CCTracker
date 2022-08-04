@@ -92,5 +92,7 @@ dependencies {
 
     implementation Libs.liveData.ktx
 
+    implementation Libs.dagger.hilt
+
 
 }

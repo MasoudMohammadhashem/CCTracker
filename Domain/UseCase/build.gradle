@@ -93,6 +93,5 @@ dependencies {
 
 
     implementation Libs.liveData.ktx
-//    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.13.+"
-//    implementation "com.fasterxml.jackson.core:jackson-annotations:2.13.3"
+
 }

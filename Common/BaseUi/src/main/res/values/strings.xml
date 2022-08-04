@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Crypto Currencies</string>
+    <string name="sort">Sort</string>
+    <string name="str_filter">Filtering</string>
 </resources>

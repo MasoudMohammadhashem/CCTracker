@@ -16,6 +16,7 @@ interface ApiCrypto {
         "Accept: application/json"
     )
     suspend fun getAllCurrencies(
+        @Query("start")start:Int,
         @Query("limit")limit:Int,
         @Query("sort")sort:String,
         @Query("sort_dir")sort_type:String,

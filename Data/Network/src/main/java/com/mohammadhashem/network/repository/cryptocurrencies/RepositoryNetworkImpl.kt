@@ -10,12 +10,14 @@ import javax.inject.Singleton
 class RepositoryNetworkImpl @Inject constructor (private val remote: DataSourceRemote):
     RepositoryNetwork {
     override suspend fun getAllCryptoCurrencies(
+        start:Int,
         limit:Int,
         sort: String,
         sort_type: String,
+        volume24_min: Double,
+        volume24_max: Double,
         percent_change24_min: Double,
         percent_change24_max: Double,
-        volume24_min: Double,
-        volume24_max: Double
-    ): CryptoResponse = remote.getCryptoCurrencies(limit,sort,sort_type,percent_change24_min,percent_change24_max,volume24_min,volume24_max)
+
+    ): CryptoResponse = remote.getCryptoCurrencies(start,limit,sort,sort_type,volume24_min,volume24_max,percent_change24_min,percent_change24_max)
 }
