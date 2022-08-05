@@ -1,4 +1,4 @@
-package com.mohammadhashem.baseui
+package com.mohammadhashem.baseui.base
 
 
 import android.content.res.Configuration
@@ -7,12 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {

@@ -5,7 +5,7 @@ import com.mohammadhashem.network.repository.cryptocurrencies.RepositoryNetwork
 import com.mohammadhashem.utils.ResultData
 
 
-class GetRemoteUseCase(
+class RemoteUseCase(
     private val repositoryNetwork: RepositoryNetwork,
 ) {
     suspend operator fun invoke(

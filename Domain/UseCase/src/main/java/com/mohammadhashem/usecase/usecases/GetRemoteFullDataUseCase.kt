@@ -1,16 +1,15 @@
 package com.mohammadhashem.usecase.usecases
 
 import com.mohammadhashem.usecase.di.DefaultDispatcher
-import com.mohammadhashem.usecase.di.IoDispatcher
 import com.mohammadhashem.usecase.mapper.toCryptos
+import com.mohammadhashem.usecase.mapper.toCryptosDao
 import com.mohammadhashem.usecase.model.CryptoModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.async
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
-import org.json.JSONObject
-import java.lang.Exception
 import javax.inject.Singleton
+import kotlin.Exception
 
 @Singleton
 class GetRemoteFullDataUseCase @Inject constructor(
@@ -29,7 +28,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
 
     ): List<CryptoModel> =
         withContext(dispatcher) {
-            val result = allUseCases.getRemoteUseCase.invoke(
+            val result = allUseCases.remoteUseCase.invoke(
                 start,
                 limit,
                 sort,
@@ -41,31 +40,32 @@ class GetRemoteFullDataUseCase @Inject constructor(
 
             )
             if (result.status.error_code==0L) {
+                allUseCases.deleteDataBaseUseCase.invoke()
                 buildList {
                         val myList = result.toCryptos()
                     myList.forEachIndexed { index, cryptoModel ->
+//                        val logo = async { getLogo(cryptoModel) }
                         val logo = getLogo(cryptoModel)
+//                        myList[index].imageUrl = logo.await()                        val logo = async { getLogo(cryptoModel) }
                         myList[index].imageUrl = logo
+                        allUseCases.insertCacheUseCase.invoke(myList[index].toCryptosDao())
                         add(index,myList[index])
                     }
                 }
             } else {
-                return@withContext buildList {
-                    emptyList<CryptoModel>()
-                }
+                throw  Exception(result.status.error_message)
             }
         }
 
     private suspend fun getLogo(cryptoModel: CryptoModel): String {
-        try {
+        return try {
             val body = allUseCases.getLogoUseCase.invoke(cryptoModel.id).toString()
             var logo = body.split("logo=")
             logo = logo[1].split(", subreddit=")
-            return logo[0].trim()
+            logo[0].trim()
         }catch (e:Exception){
-            e.message
+            "https://toppng.com//public/uploads/preview/bitcoin-11530977752iex2eerfgp.png"
         }
-        return "https://media4.s-nbcnews.com/j/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.nbcnews-fp-1024-512.png"
     }
 
 }

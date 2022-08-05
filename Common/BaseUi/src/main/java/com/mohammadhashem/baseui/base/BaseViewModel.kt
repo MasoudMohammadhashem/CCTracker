@@ -1,4 +1,4 @@
-package com.mohammadhashem.baseui
+package com.mohammadhashem.baseui.base
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow

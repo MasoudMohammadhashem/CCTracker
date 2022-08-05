@@ -2,4 +2,16 @@
     <string name="app_name">Crypto Currencies</string>
     <string name="sort">Sort</string>
     <string name="str_filter">Filtering</string>
+
+    <string-array name="SortArray">
+        <item>market_cap</item>
+        <item>price</item>
+        <item>name</item>
+        <item>circulating_supply</item>
+    </string-array>
+
+    <string-array name="SortType">
+        <item>asc</item>
+        <item>desc</item>
+    </string-array>
 </resources>

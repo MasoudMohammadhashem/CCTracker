@@ -2,13 +2,14 @@ package com.mohammadhashem.network.model.response
 
 data class Data(
     val circulating_supply: Double,
-    val cmc_rank: Long,
+    val cmc_rank: Double
+    ,
     val date_added: String,
     val id: Int,
     val last_updated: String,
-    val max_supply: Long,
+    val max_supply: Double,
     val name: String,
-    val num_market_pairs: Long,
+    val num_market_pairs: Double,
     val platform: Platform,
     val quote: Quote,
     val self_reported_circulating_supply: Double,

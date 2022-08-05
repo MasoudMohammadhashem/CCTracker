@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.mohammadhashem.usecase.model.CryptoModel
 import com.mohammadhashem.usecase.model.InputData
+import com.mohammadhashem.usecase.usecases.GetCacheUseCase
 import com.mohammadhashem.usecase.usecases.GetRemoteFullDataUseCase
 import com.mohammadhashem.utils.constval.PAGE_SIZE
 import kotlinx.coroutines.flow.Flow
@@ -15,7 +16,13 @@ class ConfigPagination @Inject constructor() {
     fun getTransactions(getRemoteData: GetRemoteFullDataUseCase, inputData: InputData): Flow<PagingData<CryptoModel>> {
         return Pager(
             config = PagingConfig(pageSize = PAGE_SIZE, enablePlaceholders = false),
-            pagingSourceFactory = { CurrenciesPagingSource(getRemoteData,inputData) }
+            pagingSourceFactory = { RemotePagingSource(getRemoteData,inputData) }
+        ).flow
+    }
+    fun getTransactions(getCacheUseCase: GetCacheUseCase): Flow<PagingData<CryptoModel>> {
+        return Pager(
+            config = PagingConfig(pageSize = 10, enablePlaceholders = false),
+            pagingSourceFactory = { CachePagingSource(getCacheUseCase) }
         ).flow
     }
 }

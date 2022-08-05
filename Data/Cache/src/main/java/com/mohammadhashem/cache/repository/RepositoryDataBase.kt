@@ -4,6 +4,7 @@ import com.mohammadhashem.cache.model.CryptoModel
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryDataBase {
-    fun getAllCache(): List<CryptoModel>
-    fun insertCache(cryptoModel: CryptoModel):Long
+    suspend fun getAllCache(): List<CryptoModel>
+    suspend fun insertCache(cryptoModel: CryptoModel):Long
+    suspend fun deleteAll()
 }

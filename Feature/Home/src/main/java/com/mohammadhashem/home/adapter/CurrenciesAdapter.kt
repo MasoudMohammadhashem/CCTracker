@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.mohammadhashem.home.adapter.onclick.OnClickAdapter
+import com.mohammadhashem.home.adapter.listener.OnClickAdapterHandler
 import com.mohammadhashem.home.adapter.viewholder.CurrenciesViewHolder
 import com.mohammadhashem.home.databinding.ItemCurrencyBinding
 import com.mohammadhashem.usecase.model.CryptoModel
@@ -12,12 +12,12 @@ import com.mohammadhashem.utils.imageloader.GlideImageLoader
 
 
 class CurrenciesAdapter : PagingDataAdapter<CryptoModel, CurrenciesViewHolder>(CurrenciesComparator) {
-        private lateinit var clickListener: OnClickAdapter
+    lateinit var clickListener:OnClickAdapterHandler
         lateinit var imageLoader: GlideImageLoader
 
 
     override fun onBindViewHolder(holder: CurrenciesViewHolder, position: Int) {
-        getItem(position)?.let { holder.bind(it,imageLoader,position) }
+        getItem(position)?.let { holder.bind(it,imageLoader,clickListener) }
     }
 
 
@@ -25,12 +25,11 @@ class CurrenciesAdapter : PagingDataAdapter<CryptoModel, CurrenciesViewHolder>(C
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrenciesViewHolder {
             val inflater =
                 ItemCurrencyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-            return CurrenciesViewHolder(inflater, parent.context, clickListener)
+            return CurrenciesViewHolder(inflater)
         }
 
 
-
-        fun updateData(onClick:OnClickAdapter,imageLoader: GlideImageLoader) {
+        fun updateData(onClick: OnClickAdapterHandler, imageLoader: GlideImageLoader) {
             this.clickListener = onClick
             this.imageLoader = imageLoader
         }

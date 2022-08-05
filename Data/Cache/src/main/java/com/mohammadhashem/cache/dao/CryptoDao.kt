@@ -7,16 +7,17 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class CryptoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    abstract fun insert(billsModel: CryptoModel):Long
+    abstract suspend fun insert(billsModel: CryptoModel):Long
 
     @Update
-    abstract fun update(billsModel: CryptoModel)
+    abstract suspend fun update(billsModel: CryptoModel)
 
     @Delete
-    abstract fun delete(billsModel: CryptoModel)
+    abstract suspend fun delete(billsModel: CryptoModel)
 
     @Query("SELECT * FROM CryptoModel")
-    abstract fun getAll(): List<CryptoModel>
+    abstract suspend fun getAll(): List<CryptoModel>
 
-
+    @Query("DELETE FROM CryptoModel")
+    abstract suspend fun deleteAll()
 }

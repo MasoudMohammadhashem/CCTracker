@@ -16,7 +16,7 @@ class GlideImageLoader @Inject constructor(@ApplicationContext val context: Cont
         val imageView2 = imageViewReference.get()
         if (imageView2 != null) {
             Glide.with(context)
-                .load(imageUrl?:"https://media4.s-nbcnews.com/j/newscms/2019_01/2705191/nbc-social-default_b6fa4fef0d31ca7e8bc7ff6d117ca9f4.nbcnews-fp-1024-512.png")
+                .load(imageUrl?:"https://toppng.com//public/uploads/preview/bitcoin-11530977752iex2eerfgp.png")
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .skipMemoryCache(false) //
                 //            .placeholder(R.drawable.holder)

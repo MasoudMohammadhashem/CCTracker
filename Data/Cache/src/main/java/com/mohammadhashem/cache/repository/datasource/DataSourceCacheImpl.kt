@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class DataSourceCacheImpl @Inject constructor(private val db : CryptoDataBase) : DataSourceCache {
-    override fun getCacheData(): List<CryptoModel> = db.ProductDao().getAll()
-    override fun insertCacheData(cryptoModel: CryptoModel): Long = db.ProductDao().insert(cryptoModel)
+    override suspend fun getCacheData(): List<CryptoModel> = db.cryptoCurrenciesDao().getAll()
+    override suspend fun insertCacheData(cryptoModel: CryptoModel): Long = db.cryptoCurrenciesDao().insert(cryptoModel)
+    override suspend fun deleteAll() = db.cryptoCurrenciesDao().deleteAll()
 }

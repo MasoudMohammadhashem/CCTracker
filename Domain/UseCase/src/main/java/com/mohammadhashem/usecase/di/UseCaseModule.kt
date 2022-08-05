@@ -20,9 +20,10 @@ class UseCaseModule {
                          repositoryDataBase: RepositoryDataBase,
                          repositoryLogo: RepositoryLogo
     )= AllUseCases(
-        GetRemoteUseCase(repositoryNetwork),
-        GetCacheUseCase(repositoryDataBase),
+        RemoteUseCase(repositoryNetwork),
+        CacheUseCase(repositoryDataBase),
         InsertCacheUseCase(repositoryDataBase),
-        GetLogoUseCase(repositoryLogo)
+        GetLogoUseCase(repositoryLogo),
+        DeleteDataBaseUseCase(repositoryDataBase)
     )
 }

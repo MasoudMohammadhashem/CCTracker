@@ -8,5 +8,5 @@ import com.mohammadhashem.cache.model.CryptoModel
 
 @Database(entities = [CryptoModel::class], version = 1)
 abstract class CryptoDataBase : RoomDatabase() {
-    abstract fun ProductDao(): CryptoDao
+    abstract fun cryptoCurrenciesDao(): CryptoDao
 }
