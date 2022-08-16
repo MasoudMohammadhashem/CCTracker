@@ -1,7 +1,7 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.cache.repository.RepositoryDataBase
+import com.mohammadhashem.usecase.repository.RepositoryCC
 
-class DeleteDataBaseUseCase(private val repositoryDataBase: RepositoryDataBase) {
-    suspend operator fun invoke() = repositoryDataBase.deleteAll()
+class DeleteDataBaseUseCase (private val repositoryCC: RepositoryCC) {
+    suspend operator fun invoke() = repositoryCC.deleteAll()
 }

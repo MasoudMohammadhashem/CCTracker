@@ -1,6 +1,11 @@
 package com.mohammadhashem.usecase.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity()
 data class CryptoModel(
+    @PrimaryKey
     val id: String,
     val name: String,
     val symbol: String,

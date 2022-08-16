@@ -1,10 +1,11 @@
 package com.mohammadhashem.usecase.usecases
 
-
-data class AllUseCases (
-    val remoteUseCase: RemoteUseCase,
+data class AllUseCases(
     val cacheUseCase: CacheUseCase,
-    val insertCacheUseCase: InsertCacheUseCase,
+    val deleteDataBaseUseCase: DeleteDataBaseUseCase,
+    val getCacheUseCase: GetCacheUseCase,
     val getLogoUseCase: GetLogoUseCase,
-    val deleteDataBaseUseCase: DeleteDataBaseUseCase
+    val getRemoteFullDataUseCase: GetRemoteFullDataUseCase,
+    val insetCacheUseCase: InsertCacheUseCase,
+    val remoteUseCase: RemoteUseCase
 )

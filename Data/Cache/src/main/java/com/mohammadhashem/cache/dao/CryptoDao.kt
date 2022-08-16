@@ -1,7 +1,7 @@
 package com.mohammadhashem.cache.dao
 
 import androidx.room.*
-import com.mohammadhashem.cache.model.CryptoModel
+import com.mohammadhashem.usecase.model.CryptoModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao

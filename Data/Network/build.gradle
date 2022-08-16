@@ -46,6 +46,7 @@ dependencies {
     //material
     implementation Libs.Google.material
     implementation project(path: ':Common:Utils')
+    implementation project(path: ':Domain:UseCase')
 
 
     //test
@@ -63,10 +64,6 @@ dependencies {
     // glide
     implementation Libs.Glide.glide
     kapt Libs.Glide.compiler
-    // room
-    implementation Libs.room.room_runtime
-    implementation Libs.room.room_ktx
-    kapt Libs.room.room_compiler
 
     //dagger hilt
     implementation Libs.dagger.dagger
@@ -77,12 +74,6 @@ dependencies {
 
     api Libs.coroutines.core
     api Libs.coroutines.android
-
-
-    //room
-    annotationProcessor Libs.room.room_runtime
-    implementation Libs.room.room_ktx
-    kapt Libs.room.room_compiler
 
 
     implementation Libs.lifecycle_components.extensions

@@ -1,9 +1,8 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.cache.model.CryptoModel
-import com.mohammadhashem.cache.repository.RepositoryDataBase
-import javax.inject.Inject
+import com.mohammadhashem.usecase.model.CryptoModel
+import com.mohammadhashem.usecase.repository.RepositoryCC
 
-    class InsertCacheUseCase (private val repositoryDataBase: RepositoryDataBase) {
-        suspend operator fun invoke(cryptoModel: CryptoModel) = repositoryDataBase.insertCache(cryptoModel)
-    }
+class InsertCacheUseCase(private val repositoryCC: RepositoryCC) {
+    suspend operator fun invoke(cryptoModel: CryptoModel) = repositoryCC.insertCache(cryptoModel)
+}

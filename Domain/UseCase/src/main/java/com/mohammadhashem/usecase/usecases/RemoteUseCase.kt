@@ -1,12 +1,11 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.network.response.CryptoResponse
-import com.mohammadhashem.network.repository.cryptocurrencies.RepositoryNetwork
-import com.mohammadhashem.utils.ResultData
+import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
+import com.mohammadhashem.usecase.repository.RepositoryCC
 
 
 class RemoteUseCase(
-    private val repositoryNetwork: RepositoryNetwork,
+    private val repositoryNetwork: RepositoryCC,
 ) {
     suspend operator fun invoke(
         start:Int,

@@ -1,21 +1,20 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.usecase.di.DefaultDispatcher
 import com.mohammadhashem.usecase.mapper.toCryptos
-import com.mohammadhashem.usecase.mapper.toCryptosDao
 import com.mohammadhashem.usecase.model.CryptoModel
+import com.mohammadhashem.usecase.repository.RepositoryCC
+import com.mohammadhashem.usecase.repository.RepositoryLogo
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.async
-import javax.inject.Inject
 import kotlinx.coroutines.withContext
 import javax.inject.Singleton
 import kotlin.Exception
 
 @Singleton
-class GetRemoteFullDataUseCase @Inject constructor(
-    @DefaultDispatcher private val dispatcher: CoroutineDispatcher,
-    private val allUseCases: AllUseCases
+class GetRemoteFullDataUseCase (
+    private val repoCC: RepositoryCC, private val repoLogo:RepositoryLogo,
+    private val dispatcher: CoroutineDispatcher
 ) {
+
     suspend operator fun invoke(
         start:Int,
         limit: Int,
@@ -28,7 +27,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
 
     ): List<CryptoModel> =
         withContext(dispatcher) {
-            val result = allUseCases.remoteUseCase.invoke(
+            val result = repoCC.getAllCryptoCurrencies(
                 start,
                 limit,
                 sort,
@@ -40,7 +39,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
 
             )
             if (result.status.error_code==0L) {
-                allUseCases.deleteDataBaseUseCase.invoke()
+                repoCC.deleteAll()
                 buildList {
                         val myList = result.toCryptos()
                     myList.forEachIndexed { index, cryptoModel ->
@@ -48,7 +47,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
                         val logo = getLogo(cryptoModel)
 //                        myList[index].imageUrl = logo.await()                        val logo = async { getLogo(cryptoModel) }
                         myList[index].imageUrl = logo
-                        allUseCases.insertCacheUseCase.invoke(myList[index].toCryptosDao())
+                        repoCC.insertCache(myList[index])
                         add(index,myList[index])
                     }
                 }
@@ -59,7 +58,7 @@ class GetRemoteFullDataUseCase @Inject constructor(
 
     private suspend fun getLogo(cryptoModel: CryptoModel): String {
         return try {
-            val body = allUseCases.getLogoUseCase.invoke(cryptoModel.id).toString()
+            val body = repoLogo.getLogo(cryptoModel.id).toString()
             var logo = body.split("logo=")
             logo = logo[1].split(", subreddit=")
             logo[0].trim()

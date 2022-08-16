@@ -1,8 +1,7 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.cache.repository.RepositoryDataBase
-import javax.inject.Inject
+import com.mohammadhashem.usecase.repository.RepositoryCC
 
-class CacheUseCase (private val repositoryDataBase: RepositoryDataBase) {
-    suspend operator fun invoke() = repositoryDataBase.getAllCache()
+class CacheUseCase (private val repositoryCC: RepositoryCC) {
+    suspend operator fun invoke() = repositoryCC.getAllCache()
 }

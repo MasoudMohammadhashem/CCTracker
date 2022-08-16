@@ -1,10 +1,8 @@
 package com.mohammadhashem.network.api
 
-import com.mohammadhashem.network.response.CryptoResponse
-import com.mohammadhashem.network.response.info.Info
-import com.mohammadhashem.utils.ResultData
+import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
+import com.mohammadhashem.usecase.model.remote.response.info.Info
 import com.mohammadhashem.utils.constval.API_KEY
-import org.json.JSONObject
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
