@@ -9,13 +9,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mohammadhashem.home.databinding.BottomSheetFilterBinding
-import com.mohammadhashem.usecase.model.InputData
+import com.mohammadhashem.domain.model.InputData
 import com.mohammadhashem.utils.constval.PAGE_SIZE
 
 
 class BottomSheetFilter : BottomSheetDialogFragment() {
 
-    lateinit var inputData: InputData
+    lateinit var inputData: com.mohammadhashem.domain.model.InputData
     lateinit var onClickBottomSheet: OnClickBottomSheet
 
     override fun onCreateView(
@@ -34,9 +34,16 @@ class BottomSheetFilter : BottomSheetDialogFragment() {
         }
         binding.clDoFilter.setOnClickListener {
             try {
-                val newInput = InputData(1, PAGE_SIZE,binding.spSort.selectedItem.toString(),binding.spSortType.selectedItem.toString(),
-                    (binding.etFromVolume.text.toString()).toDouble(),(binding.etToVolume.text.toString()).toDouble(),
-                    (binding.etFrom.text.toString()).toDouble(),(binding.etTo.text.toString()).toDouble())
+                val newInput = com.mohammadhashem.domain.model.InputData(
+                    1,
+                    PAGE_SIZE,
+                    binding.spSort.selectedItem.toString(),
+                    binding.spSortType.selectedItem.toString(),
+                    (binding.etFromVolume.text.toString()).toDouble(),
+                    (binding.etToVolume.text.toString()).toDouble(),
+                    (binding.etFrom.text.toString()).toDouble(),
+                    (binding.etTo.text.toString()).toDouble()
+                )
                 onClickBottomSheet.onClickBottomSheet(newInput)
                 dialog?.let {
                     dismiss()
@@ -65,7 +72,7 @@ class BottomSheetFilter : BottomSheetDialogFragment() {
         return binding.root
     }
 
-    fun setData(inputData: InputData,onClickBottomSheet: OnClickBottomSheet){
+    fun setData(inputData: com.mohammadhashem.domain.model.InputData, onClickBottomSheet: OnClickBottomSheet){
         this.inputData = inputData
         this.onClickBottomSheet = onClickBottomSheet
     }

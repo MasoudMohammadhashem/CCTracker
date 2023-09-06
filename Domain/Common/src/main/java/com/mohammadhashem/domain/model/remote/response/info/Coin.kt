@@ -1,4 +1,4 @@
-package com.mohammadhashem.usecase.model.remote.response.info
+package com.mohammadhashem.domain.model.remote.response.info
 
 data class Coin(
     val id: String,

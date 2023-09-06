@@ -5,8 +5,8 @@ import androidx.room.Room
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.mohammadhashem.cache.database.CryptoDataBase
-import com.mohammadhashem.cache.sources.DataSourceCache
-import com.mohammadhashem.cache.sources.DataSourceCacheImpl
+import com.mohammadhashem.cache.sources.RepositoryCacheImpl
+import com.mohammadhashem.domain.repository.dao.CryptoDao
 import com.mohammadhashem.network.api.ApiCrypto
 import com.mohammadhashem.utils.constval.BASE_URL
 import dagger.Module
@@ -27,7 +27,9 @@ object CommonModules {
     fun provideDataBase(@ApplicationContext context: Context) = Room.databaseBuilder(
         context, CryptoDataBase::class.java, "CryptoDataBase"
     ).fallbackToDestructiveMigration().build()
-
+    @Singleton
+    @Provides
+    fun provideDataSourceCache(db: CryptoDataBase): CryptoDao = RepositoryCacheImpl(db)
     @Singleton
     @Provides
     fun provide(): Gson {

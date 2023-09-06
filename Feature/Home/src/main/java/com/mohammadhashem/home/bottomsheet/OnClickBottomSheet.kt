@@ -1,7 +1,7 @@
 package com.mohammadhashem.home.bottomsheet
 
-import com.mohammadhashem.usecase.model.InputData
+import com.mohammadhashem.domain.model.InputData
 
 interface OnClickBottomSheet {
-    fun onClickBottomSheet(input: InputData)
+    fun onClickBottomSheet(input: com.mohammadhashem.domain.model.InputData)
 }

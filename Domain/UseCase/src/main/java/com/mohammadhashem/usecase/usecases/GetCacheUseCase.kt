@@ -1,9 +1,9 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.usecase.mapper.toCryptos
-import com.mohammadhashem.usecase.model.CryptoModel
-import com.mohammadhashem.usecase.repository.RepositoryCC
+import com.mohammadhashem.domain.model.CryptoModel
+import com.mohammadhashem.domain.repository.RepositoryCC
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class GetCacheUseCase (
@@ -14,9 +14,13 @@ class GetCacheUseCase (
 
     suspend operator fun invoke(): List<CryptoModel> =
         withContext(dispatcher) {
-            val result = repoCC.getAllCache()
+//            return@withContext repoCC.getAllCache()
+            return@withContext buildList {
+                repoCC.getAllCache()
+            }
+/*            val result = repoCC.getAllCache()
             buildList {
-                var list:List<CryptoModel> = ArrayList()
+                var list:List<com.mohammadhashem.domain.model.CryptoModel> = ArrayList()
 
                 list = result
                 if (list.isNotEmpty()) {
@@ -24,9 +28,6 @@ class GetCacheUseCase (
                 } else {
                     throw Exception("DataBase is empty")
                 }
-            }
-
-
+            }*/
         }
-
 }

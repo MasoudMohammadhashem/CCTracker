@@ -1,9 +1,10 @@
 package com.mohammadhashem.usecase.di.all_usecase
 
 import com.mohammadhashem.usecase.di.dispatchers.DefaultDispatcher
+import com.mohammadhashem.usecase.di.dispatchers.DispatcherModule
 import com.mohammadhashem.usecase.di.dispatchers.IoDispatcher
-import com.mohammadhashem.usecase.repository.RepositoryCC
-import com.mohammadhashem.usecase.repository.RepositoryLogo
+import com.mohammadhashem.domain.repository.RepositoryCC
+import com.mohammadhashem.domain.repository.RepositoryLogo
 import com.mohammadhashem.usecase.usecases.*
 import dagger.Module
 import dagger.Provides

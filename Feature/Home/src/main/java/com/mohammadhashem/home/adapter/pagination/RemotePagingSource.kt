@@ -2,18 +2,20 @@ package com.mohammadhashem.home.adapter.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.mohammadhashem.usecase.model.CryptoModel
-import com.mohammadhashem.usecase.model.InputData
+import com.mohammadhashem.domain.model.CryptoModel
+import com.mohammadhashem.domain.model.InputData
 import com.mohammadhashem.usecase.usecases.GetCacheUseCase
 import com.mohammadhashem.usecase.usecases.GetRemoteFullDataUseCase
+import com.mohammadhashem.usecase.usecases.InsertCacheUseCase
 
 
 class RemotePagingSource(
     private val getRemoteFullDataUseCase: GetRemoteFullDataUseCase,
-    private val inputData: InputData
-) : PagingSource<Int, CryptoModel>() {
+    private val insertDataUseCase: InsertCacheUseCase,
+    private val inputData: com.mohammadhashem.domain.model.InputData
+) : PagingSource<Int, com.mohammadhashem.domain.model.CryptoModel>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, CryptoModel> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, com.mohammadhashem.domain.model.CryptoModel> {
 
             val page = params.key ?: 1
             val list = getRemoteFullDataUseCase.invoke(
@@ -26,6 +28,7 @@ class RemotePagingSource(
                 inputData.percent_change24_min,
                 inputData.percent_change24_max
             )
+
         return  LoadResult.Page(
                 data = list,
                 prevKey = if (page == 1) null else page - 1,
@@ -35,7 +38,7 @@ class RemotePagingSource(
 
     }
 
-    override fun getRefreshKey(state: PagingState<Int, CryptoModel>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, com.mohammadhashem.domain.model.CryptoModel>): Int? {
         return state.anchorPosition?.coerceAtLeast(1)   // 1 is the first page
     }
 

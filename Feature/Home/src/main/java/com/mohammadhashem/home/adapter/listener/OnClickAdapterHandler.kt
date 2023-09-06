@@ -1,7 +1,7 @@
 package com.mohammadhashem.home.adapter.listener
 
-import com.mohammadhashem.usecase.model.CryptoModel
+import com.mohammadhashem.domain.model.CryptoModel
 
 interface OnClickAdapterHandler {
-    fun onClick(model: CryptoModel)
+    fun onClick(model: com.mohammadhashem.domain.model.CryptoModel)
 }

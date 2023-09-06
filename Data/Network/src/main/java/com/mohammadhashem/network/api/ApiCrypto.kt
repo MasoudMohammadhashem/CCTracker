@@ -1,7 +1,7 @@
 package com.mohammadhashem.network.api
 
-import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
-import com.mohammadhashem.usecase.model.remote.response.info.Info
+import com.mohammadhashem.domain.model.remote.response.CryptoResponse
+import com.mohammadhashem.domain.model.remote.response.info.Info
 import com.mohammadhashem.utils.constval.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -22,7 +22,7 @@ interface ApiCrypto {
         @Query("volume_24h_max")volume24_max: Double,
         @Query("percent_change_24h_min")percent_change24_min:Double,
         @Query("percent_change_24h_max")percent_change24_max:Double
-    ): CryptoResponse
+    ): com.mohammadhashem.domain.model.remote.response.CryptoResponse
 
     @GET("v1/cryptocurrency/info")
     @Headers(
@@ -31,5 +31,5 @@ interface ApiCrypto {
     )
     suspend fun getLogoUrl(
         @Query("id")id:String,
-    ): Info
+    ): com.mohammadhashem.domain.model.remote.response.info.Info
 }

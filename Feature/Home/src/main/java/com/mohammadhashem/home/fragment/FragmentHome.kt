@@ -17,8 +17,8 @@ import com.mohammadhashem.home.bottomsheet.BottomSheetFilter
 import com.mohammadhashem.home.bottomsheet.OnClickBottomSheet
 import com.mohammadhashem.home.databinding.FragmentHomeBinding
 import com.mohammadhashem.home.fragment.viewmodel.HomeViewModel
-import com.mohammadhashem.usecase.model.CryptoModel
-import com.mohammadhashem.usecase.model.InputData
+import com.mohammadhashem.domain.model.CryptoModel
+import com.mohammadhashem.domain.model.InputData
 import com.mohammadhashem.utils.imageloader.GlideImageLoader
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -37,7 +37,7 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>(), OnClickBottomSheet,
     private lateinit var progressBar: ProgressBar
     private lateinit var rvCurrencies: RecyclerView
     private lateinit var adapter: CurrenciesAdapter
-    private var inputData = InputData(
+    private var inputData = com.mohammadhashem.domain.model.InputData(
         1, 10, "volume_24h", "asc", 0.0,
         1.0, -100.0, 100000.0
     )
@@ -103,14 +103,14 @@ class FragmentHome : BaseFragment<FragmentHomeBinding>(), OnClickBottomSheet,
     }
 
 
-    override fun onClickBottomSheet(input: InputData) {
+    override fun onClickBottomSheet(input: com.mohammadhashem.domain.model.InputData) {
         this.inputData = input
         lifecycleScope.launch {
             fetchRemoteData()
         }
     }
 
-    override fun onClick(model: CryptoModel) {
+    override fun onClick(model: com.mohammadhashem.domain.model.CryptoModel) {
         Toast.makeText(requireContext(), "id: ${model.id}  name: ${model.name}", Toast.LENGTH_SHORT)
             .show()
     }

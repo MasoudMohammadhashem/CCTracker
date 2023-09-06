@@ -1,7 +1,7 @@
-package com.mohammadhashem.usecase.mapper
+package com.mohammadhashem.domain.mapper
 
-import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
-import com.mohammadhashem.usecase.model.CryptoModel
+import com.mohammadhashem.domain.model.remote.response.CryptoResponse
+import com.mohammadhashem.domain.model.CryptoModel
 
 fun CryptoResponse.toCryptos(): List<CryptoModel> {
     return this.data.map {

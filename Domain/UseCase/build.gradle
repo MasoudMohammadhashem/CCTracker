@@ -46,6 +46,9 @@ dependencies {
     //material
     implementation Libs.Google.material
     implementation project(path: ':Common:Utils')
+    implementation project(path: ':Data:Cache')
+    implementation project(path: ':Domain:Common')
+    implementation project(path: ':Data:Repository')
 
 
     //test

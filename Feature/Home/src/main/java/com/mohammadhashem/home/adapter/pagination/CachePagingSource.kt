@@ -2,10 +2,8 @@ package com.mohammadhashem.home.adapter.pagination
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.mohammadhashem.usecase.model.CryptoModel
-import com.mohammadhashem.usecase.model.InputData
+import com.mohammadhashem.domain.model.CryptoModel
 import com.mohammadhashem.usecase.usecases.GetCacheUseCase
-import com.mohammadhashem.usecase.usecases.GetRemoteFullDataUseCase
 
 class CachePagingSource(
     private val getCacheUseCase: GetCacheUseCase

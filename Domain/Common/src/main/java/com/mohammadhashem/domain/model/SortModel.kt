@@ -1,4 +1,4 @@
-package com.mohammadhashem.usecase.model
+package com.mohammadhashem.domain.model
 
 data class SortModel(
     val market_cap: String,

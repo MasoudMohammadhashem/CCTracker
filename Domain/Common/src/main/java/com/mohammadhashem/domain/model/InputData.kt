@@ -1,4 +1,4 @@
-package com.mohammadhashem.usecase.model
+package com.mohammadhashem.domain.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

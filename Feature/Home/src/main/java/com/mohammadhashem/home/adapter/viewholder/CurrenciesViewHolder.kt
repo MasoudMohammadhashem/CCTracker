@@ -3,14 +3,14 @@ package com.mohammadhashem.home.adapter.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import com.mohammadhashem.home.adapter.listener.OnClickAdapterHandler
 import com.mohammadhashem.home.databinding.ItemCurrencyBinding
-import com.mohammadhashem.usecase.model.CryptoModel
+import com.mohammadhashem.domain.model.CryptoModel
 import com.mohammadhashem.utils.imageloader.GlideImageLoader
 
 class CurrenciesViewHolder(
     private val binding: ItemCurrencyBinding
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(
-        task: CryptoModel,
+        task: com.mohammadhashem.domain.model.CryptoModel,
         imageLoader: GlideImageLoader,
         onclick: OnClickAdapterHandler
     ) {

@@ -1,4 +1,4 @@
-package com.mohammadhashem.usecase.model
+package com.mohammadhashem.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

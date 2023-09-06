@@ -1,6 +1,6 @@
 package com.mohammadhashem.network.sources.cryptocurrencies
 
-import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
+import com.mohammadhashem.domain.model.remote.response.CryptoResponse
 
 interface DataSourceRemote {
     suspend fun getCryptoCurrencies(
@@ -10,5 +10,5 @@ interface DataSourceRemote {
         percent_change24_min: Double,
         percent_change24_max: Double,
         volume24_min: Double, volume24_max: Double
-    ): CryptoResponse
+    ): com.mohammadhashem.domain.model.remote.response.CryptoResponse
 }

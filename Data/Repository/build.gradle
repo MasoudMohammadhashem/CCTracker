@@ -49,7 +49,7 @@ dependencies {
     implementation project(path: ':Common:Utils')
     implementation project(path: ':Data:Cache')
     implementation project(path: ':Data:Network')
-    implementation project(path: ':Domain:UseCase')
+    implementation project(path: ':Domain:Common')
 
 
     //test

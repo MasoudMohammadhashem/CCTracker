@@ -1,10 +1,11 @@
-package com.mohammadhashem.usecase.repository
+package com.mohammadhashem.domain.repository
 
-import com.mohammadhashem.usecase.model.CryptoModel
-import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
+import com.mohammadhashem.domain.model.CryptoModel
+import com.mohammadhashem.domain.model.remote.response.CryptoResponse
+import kotlinx.coroutines.flow.Flow
 
 interface RepositoryCC {
-    suspend fun getAllCache(): List<CryptoModel>
+    fun getAllCache(): Flow<List<CryptoModel>>
     suspend fun insertCache(cryptoModel: CryptoModel):Long
     suspend fun deleteAll()
     suspend fun getAllCryptoCurrencies(

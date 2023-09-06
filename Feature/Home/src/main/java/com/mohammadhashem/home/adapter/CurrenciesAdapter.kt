@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import com.mohammadhashem.domain.model.CryptoModel
 import com.mohammadhashem.home.adapter.listener.OnClickAdapterHandler
 import com.mohammadhashem.home.adapter.viewholder.CurrenciesViewHolder
 import com.mohammadhashem.home.databinding.ItemCurrencyBinding
-import com.mohammadhashem.usecase.model.CryptoModel
 import com.mohammadhashem.utils.imageloader.GlideImageLoader
 
 

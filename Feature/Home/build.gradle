@@ -48,6 +48,7 @@ dependencies {
     implementation project(path: ':Domain:UseCase')
     implementation project(path: ':Common:Utils')
     implementation project(path: ':Common:BaseUi')
+    implementation project(path: ':Domain:Common')
 
 
     //test

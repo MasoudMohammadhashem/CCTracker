@@ -1,9 +1,9 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.usecase.mapper.toCryptos
-import com.mohammadhashem.usecase.model.CryptoModel
-import com.mohammadhashem.usecase.repository.RepositoryCC
-import com.mohammadhashem.usecase.repository.RepositoryLogo
+import com.mohammadhashem.domain.mapper.toCryptos
+import com.mohammadhashem.domain.model.CryptoModel
+import com.mohammadhashem.domain.repository.RepositoryCC
+import com.mohammadhashem.domain.repository.RepositoryLogo
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import javax.inject.Singleton
@@ -11,7 +11,7 @@ import kotlin.Exception
 
 @Singleton
 class GetRemoteFullDataUseCase (
-    private val repoCC: RepositoryCC, private val repoLogo:RepositoryLogo,
+    private val repoCC: com.mohammadhashem.domain.repository.RepositoryCC, private val repoLogo: com.mohammadhashem.domain.repository.RepositoryLogo,
     private val dispatcher: CoroutineDispatcher
 ) {
 
@@ -25,7 +25,7 @@ class GetRemoteFullDataUseCase (
         percent_change24_min: Double,
         percent_change24_max: Double,
 
-    ): List<CryptoModel> =
+    ): List<com.mohammadhashem.domain.model.CryptoModel> =
         withContext(dispatcher) {
             val result = repoCC.getAllCryptoCurrencies(
                 start,
@@ -39,13 +39,10 @@ class GetRemoteFullDataUseCase (
 
             )
             if (result.status.error_code==0L) {
-                repoCC.deleteAll()
                 buildList {
                         val myList = result.toCryptos()
                     myList.forEachIndexed { index, cryptoModel ->
-//                        val logo = async { getLogo(cryptoModel) }
                         val logo = getLogo(cryptoModel)
-//                        myList[index].imageUrl = logo.await()                        val logo = async { getLogo(cryptoModel) }
                         myList[index].imageUrl = logo
                         repoCC.insertCache(myList[index])
                         add(index,myList[index])

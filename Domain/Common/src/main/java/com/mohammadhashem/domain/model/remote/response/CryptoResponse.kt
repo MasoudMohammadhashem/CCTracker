@@ -1,4 +1,4 @@
-package com.mohammadhashem.usecase.model.remote.response
+package com.mohammadhashem.domain.model.remote.response
 
 import com.mohammadhashem.network.model.response.Data
 

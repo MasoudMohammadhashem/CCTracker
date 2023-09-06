@@ -46,7 +46,7 @@ dependencies {
     //material
     implementation Libs.Google.material
     implementation project(path: ':Common:Utils')
-    implementation project(path: ':Domain:UseCase')
+    implementation project(path: ':Domain:Common')
 
 
     //test

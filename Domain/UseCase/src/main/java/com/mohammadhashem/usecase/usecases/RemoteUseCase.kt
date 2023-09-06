@@ -1,11 +1,11 @@
 package com.mohammadhashem.usecase.usecases
 
-import com.mohammadhashem.usecase.model.remote.response.CryptoResponse
-import com.mohammadhashem.usecase.repository.RepositoryCC
+import com.mohammadhashem.domain.model.remote.response.CryptoResponse
+import com.mohammadhashem.domain.repository.RepositoryCC
 
 
 class RemoteUseCase(
-    private val repositoryNetwork: RepositoryCC,
+    private val repositoryNetwork: com.mohammadhashem.domain.repository.RepositoryCC,
 ) {
     suspend operator fun invoke(
         start:Int,
@@ -17,7 +17,7 @@ class RemoteUseCase(
         percent_change24_min: Double,
         percent_change24_max: Double,
 
-    ): CryptoResponse =
+    ): com.mohammadhashem.domain.model.remote.response.CryptoResponse =
         repositoryNetwork.getAllCryptoCurrencies(
             start,
             limit,
